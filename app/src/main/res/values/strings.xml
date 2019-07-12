@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">myKlan</string>
+    <string name="login">Login</string>
+
+
+    <string name="forget_password"><a href="" target="_top">Forget Password</a></string>
+
+    <string name="sign_up">New User? Sign Up</string>
+    <string name="spinner_hint">I\'m</string>
+
+
+    <string-array name="family_member">
+
+        <item>Adult</item>
+        <item>Child</item>
+        <item>Senior Adult</item>
+
+    </string-array>
+</resources>

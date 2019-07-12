@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding">30dp</dimen>
+    <dimen name="heading_size">30sp</dimen>
+    <dimen name="paragraph_size">18sp</dimen>
+    <dimen name="subheading_size">18sp</dimen>
+    <dimen name="subheading_width">150dp</dimen>
+    <dimen name="card_whoAreYou" />
+    <dimen name="card_height_whoAreYou">100dp</dimen>
+    <dimen name="car_margin_bottom">25dp</dimen>
+</resources>
