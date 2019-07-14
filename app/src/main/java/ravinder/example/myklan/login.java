@@ -101,7 +101,7 @@ public class login extends Activity {
                     if(resp.getBoolean("auth")){
                         Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
                         startActivity(fp);
-                        //Log.e(tag,"respnse: " + response);
+                        //Log.e(tag,"response: " + response);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

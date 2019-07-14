@@ -30,7 +30,7 @@
         app:cardBackgroundColor="#E2DDD8D8"
         app:cardCornerRadius="13dp"
         app:cardElevation="8dp"
-        android:onClick="addMembers">
+        android:onClick="userProfile">
 
         <LinearLayout
             android:layout_width="wrap_content"
