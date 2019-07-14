@@ -12,11 +12,18 @@ public class whoAreYou extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_who_are_you);
     }
+//
+//    public void userProfile(View view) {
+//
+//        Intent userProfilePage=new Intent(getApplicationContext(), userProfile.class);
+//        startActivity(userProfilePage);
+//
+//    }
 
-    public void userProfile(View view) {
+    public void dashboard(View view) {
 
-        Intent userProfilePage=new Intent(getApplicationContext(), userProfile.class);
-        startActivity(userProfilePage);
+        Intent dashboard = new Intent(getApplicationContext(), Dashboard.class);
+        startActivity(dashboard);
 
     }
 }
