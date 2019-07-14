@@ -13,10 +13,10 @@ public class whoAreYou extends AppCompatActivity {
         setContentView(R.layout.activity_who_are_you);
     }
 
-    public void addMembers(View view) {
+    public void userProfile(View view) {
 
-        Intent addMembersForm=new Intent(getApplicationContext(), AddMemberForm.class);
-        startActivity(addMembersForm);
+        Intent userProfilePage=new Intent(getApplicationContext(), userProfile.class);
+        startActivity(userProfilePage);
 
     }
 }
