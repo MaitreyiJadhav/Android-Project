@@ -46,7 +46,7 @@ public class login extends Activity {
             @Override
             public void onClick(View v) {
                 Login(email.getText().toString(),password.getText().toString());
-                //GetFamilyData();
+             //GetFamilyData();
             }
         });
     }
@@ -136,6 +136,7 @@ public class login extends Activity {
             public void run() {
                 HttpsURLConnection connection = null;
                 try {
+                  Log.e(tag,"getfamilydata: " +authenticator);
                     //{"key":"Authorization","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I","description":"","type":"text","enabled":true}
                     String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
                     URL loginEndPoint = new URL(url);
