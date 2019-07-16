@@ -15,8 +15,10 @@ public class MembersEmpty extends AppCompatActivity {
         setContentView(R.layout.activity_members_empty);
         Intent intent = getIntent();
         String message = intent.getStringExtra("message");
+        String Members = intent.getStringExtra("MembersData");
 
         Log.e("UserID", message);
+        Log.e("Members", Members);
 
         text1=(TextView)  findViewById(R.id.labelFamilyName);
         text1.setText(message);

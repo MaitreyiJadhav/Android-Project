@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/white_bg_button"
-        android:text="Add New Member"
+        android:text="Let Us Know About You"
         android:onClick="addMemberClick"
 
         android:textColor="@color/loginButton" />

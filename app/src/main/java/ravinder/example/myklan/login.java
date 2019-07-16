@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +33,7 @@ public class login extends Activity {
     Button loginButton;
 
     String authenticator = "";
+    String str="";
 
 
     @Override
@@ -178,8 +180,9 @@ public class login extends Activity {
                     //if(resp.getBoolean("auth")){
 
                     GetFamilyMembers(uid);
-                        Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
+                    Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
                     fp.putExtra("message", familyName);
+                    fp.putExtra("MembersData", str);
 
                     startActivity(fp);
                     //}
@@ -203,9 +206,8 @@ public class login extends Activity {
 
     public void GetFamilyMembers(final String uid)
     {
-
-
         AsyncTask.execute(new Runnable() {
+
             @Override
             public void run() {
                 HttpsURLConnection connection = null;
@@ -245,10 +247,14 @@ public class login extends Activity {
                     }
                     rd.close();
                     Log.e(tag,"the response: " + response);
-                  JSONObject resp = new JSONObject(response.toString());
+                    str=response.toString();
 
-
-
+                    JSONArray jsonarray = new JSONArray(str);
+                    for(int i=0; i < jsonarray.length(); i++) {
+                        JSONObject jsonobject = jsonarray.getJSONObject(i);
+                        String name = jsonobject.getString("name");
+                        Log.e(tag, "Name: " + name);
+                    }
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
