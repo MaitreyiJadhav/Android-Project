@@ -46,7 +46,7 @@ public class login extends Activity {
             @Override
             public void onClick(View v) {
                 Login(email.getText().toString(),password.getText().toString());
-             //GetFamilyData();
+
             }
         });
     }
@@ -99,14 +99,15 @@ public class login extends Activity {
                     rd.close();
                     final JSONObject resp = new JSONObject(response.toString());
                     if(resp.getBoolean("auth")){
-                        Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
-                        startActivity(fp);
+//                        Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
+//                        startActivity(fp);
                         //Log.e(tag,"respnse: " + response);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     authenticator = resp.getString("token");
+                                    GetFamilyData();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -136,23 +137,21 @@ public class login extends Activity {
             public void run() {
                 HttpsURLConnection connection = null;
                 try {
-                  Log.e(tag,"getfamilydata: " +authenticator);
                     //{"key":"Authorization","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I","description":"","type":"text","enabled":true}
-                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
+                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";//"https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
                     URL loginEndPoint = new URL(url);
                     connection = (HttpsURLConnection) loginEndPoint.openConnection();
-                    connection.addRequestProperty("key","Authorization");
-                    connection.addRequestProperty("value",authenticator);
+                    connection.setRequestMethod("GET");
+                    connection.setRequestProperty("Authorization",authenticator);
 
                     //connection.setRequestProperty("key","Authorization");
                     //connection.setRequestProperty("value",authenticator);
-                    connection.setRequestProperty("type","text");
-                    connection.setRequestProperty("enabled","true");
-                    connection.setRequestProperty("description","");
+                    //connection.setRequestProperty("type","text");
+                    //connection.setRequestProperty("enabled","true");
+                    //connection.setRequestProperty("description","");
                     //Log.e("test",connection.getHeaderField("value"));
                     //connection.setRequestProperty("value","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I");
-
-                    connection.setDoOutput(true);
+                    Log.e(tag,"getfamilydata: " + connection.getRequestProperty("Authorization"));
 
                     // Get Response
                     String responseCode = String.valueOf(connection.getResponseCode());
@@ -168,9 +167,21 @@ public class login extends Activity {
                     rd.close();
                     Log.e(tag,"the response: " + response);
                     JSONObject resp = new JSONObject(response.toString());
+                    String familyName = resp.get("familyName").toString();
+
+                    String uid = resp.get("_id").toString();
+
+                    Log.e(tag,"the family Name: " + familyName);
+                    Log.e(tag,"user ID: " + uid);
+
+                    //Log.e(tag,"the actual result: " + resp);
                     //if(resp.getBoolean("auth")){
+
+                    GetFamilyMembers(uid);
                         Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
-                        startActivity(fp);
+                    fp.putExtra("message", familyName);
+
+                    startActivity(fp);
                     //}
 
                 } catch (MalformedURLException e) {
@@ -187,5 +198,74 @@ public class login extends Activity {
             }
         });
     }
+
+
+
+    public void GetFamilyMembers(final String uid)
+    {
+
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                HttpsURLConnection connection = null;
+                try {
+                    //{"key":"Authorization","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I","description":"","type":"text","enabled":true}
+                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/getMembers?userId="+uid;
+
+
+
+                    Log.e("url",url);
+
+                    //https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
+                    URL loginEndPoint = new URL(url);
+                    connection = (HttpsURLConnection) loginEndPoint.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setRequestProperty("Authorization",authenticator);
+
+                    //connection.setRequestProperty("key","Authorization");
+                    //connection.setRequestProperty("value",authenticator);
+                    //connection.setRequestProperty("type","text");
+                    //connection.setRequestProperty("enabled","true");
+                    //connection.setRequestProperty("description","");
+                    //Log.e("test",connection.getHeaderField("value"));
+                    //connection.setRequestProperty("value","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I");
+                    Log.e(tag,"getfamilydata: " + connection.getRequestProperty("Authorization"));
+
+                    // Get Response
+                    String responseCode = String.valueOf(connection.getResponseCode());
+                    Log.e(tag,"the response: " + responseCode);
+                    InputStream is = connection.getInputStream();
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                    String line;
+                    StringBuffer response = new StringBuffer();
+                    while ((line = rd.readLine()) != null) {
+                        response.append(line);
+                        response.append('\r');
+                    }
+                    rd.close();
+                    Log.e(tag,"the response: " + response);
+                  JSONObject resp = new JSONObject(response.toString());
+
+
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    if(connection!=null){
+                        connection.disconnect();
+                    }
+                }
+            }
+        });
+
+
+
+    }
+
 
 }
