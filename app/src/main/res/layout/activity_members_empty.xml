@@ -29,12 +29,11 @@
         android:textSize="@dimen/paragraph_size" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/aboutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/white_bg_button"
         android:text="Let Us Know About You"
-        android:onClick="addMemberClick"
 
         android:textColor="@color/loginButton" />
 

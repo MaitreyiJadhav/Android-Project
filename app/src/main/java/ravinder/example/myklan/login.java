@@ -179,10 +179,11 @@ public class login extends Activity {
                     //Log.e(tag,"the actual result: " + resp);
                     //if(resp.getBoolean("auth")){
 
-                    GetFamilyMembers(uid);
+
                     Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
-                    fp.putExtra("message", familyName);
-                    fp.putExtra("MembersData", str);
+                    fp.putExtra("familyName", familyName);
+                    fp.putExtra("UserId", uid);
+                    fp.putExtra("Authorization",authenticator);
 
                     startActivity(fp);
                     //}
@@ -204,74 +205,7 @@ public class login extends Activity {
 
 
 
-    public void GetFamilyMembers(final String uid)
-    {
-        AsyncTask.execute(new Runnable() {
 
-            @Override
-            public void run() {
-                HttpsURLConnection connection = null;
-                try {
-                    //{"key":"Authorization","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I","description":"","type":"text","enabled":true}
-                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/getMembers?userId="+uid;
-
-
-
-                    Log.e("url",url);
-
-                    //https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
-                    URL loginEndPoint = new URL(url);
-                    connection = (HttpsURLConnection) loginEndPoint.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setRequestProperty("Authorization",authenticator);
-
-                    //connection.setRequestProperty("key","Authorization");
-                    //connection.setRequestProperty("value",authenticator);
-                    //connection.setRequestProperty("type","text");
-                    //connection.setRequestProperty("enabled","true");
-                    //connection.setRequestProperty("description","");
-                    //Log.e("test",connection.getHeaderField("value"));
-                    //connection.setRequestProperty("value","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I");
-                    Log.e(tag,"getfamilydata: " + connection.getRequestProperty("Authorization"));
-
-                    // Get Response
-                    String responseCode = String.valueOf(connection.getResponseCode());
-                    Log.e(tag,"the response: " + responseCode);
-                    InputStream is = connection.getInputStream();
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-                    String line;
-                    StringBuffer response = new StringBuffer();
-                    while ((line = rd.readLine()) != null) {
-                        response.append(line);
-                        response.append('\r');
-                    }
-                    rd.close();
-                    Log.e(tag,"the response: " + response);
-                    str=response.toString();
-
-                    JSONArray jsonarray = new JSONArray(str);
-                    for(int i=0; i < jsonarray.length(); i++) {
-                        JSONObject jsonobject = jsonarray.getJSONObject(i);
-                        String name = jsonobject.getString("name");
-                        Log.e(tag, "Name: " + name);
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } finally {
-                    if(connection!=null){
-                        connection.disconnect();
-                    }
-                }
-            }
-        });
-
-
-
-    }
 
 
 }
