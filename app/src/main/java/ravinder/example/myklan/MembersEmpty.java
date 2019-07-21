@@ -1,7 +1,9 @@
 package ravinder.example.myklan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +55,8 @@ public class MembersEmpty extends AppCompatActivity {
 
             }
         });
+
+
     }
 //public void addMemberClick(View view) {
 //
@@ -75,7 +79,7 @@ public class MembersEmpty extends AppCompatActivity {
 
                     Log.e("url",url);
 
-                    //https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/me";
+                  
                     URL loginEndPoint = new URL(url);
                     connection = (HttpsURLConnection) loginEndPoint.openConnection();
                     connection.setRequestMethod("GET");
@@ -113,8 +117,19 @@ public class MembersEmpty extends AppCompatActivity {
                     }
 
 
+                    SharedPreferences mPrefs = getSharedPreferences("IDvalue", 0);
+                   //Give any name for //preference as I have given "IDvalue" and value 0.
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString("str", str);
+                   // give key value as "sound" you mentioned and value what you // to want give as "1" in you mentioned
+                    editor.commit();
+
+
+
+
+
                     Intent whoAreYou = new Intent(getApplicationContext(), whoAreYou.class);
-                    whoAreYou .putExtra("familyMembers", str);
+                    //whoAreYou .putExtra("familyMembers", str);
                     startActivity(whoAreYou);
 
 

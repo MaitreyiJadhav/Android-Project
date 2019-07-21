@@ -1,6 +1,7 @@
 package ravinder.example.myklan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +20,12 @@ public class whoAreYou extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_who_are_you);
 
-
+        SharedPreferences mPrefs = getSharedPreferences("IDvalue",0);
+        String familyMembers = mPrefs.getString("str", "");
 
         member=(TextView)findViewById(R.id.member);
         Intent intent = getIntent();
-        String familyMembers = intent.getStringExtra("familyMembers");
+       // String familyMembers = intent.getStringExtra("familyMembers");
         Log.e("familyMembers",familyMembers);
 
         try {
@@ -32,7 +34,7 @@ public class whoAreYou extends AppCompatActivity {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
                 String name = jsonobject.getString("name");
                 Log.e("name",name);
-                member.append(name);
+                member.setText(name);
 
             }
 
