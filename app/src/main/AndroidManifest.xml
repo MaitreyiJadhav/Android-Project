@@ -11,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AccountDetails"></activity>
+        <activity android:name=".SharedAccounts" />
+        <activity android:name=".SharedSpace" />
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Features" />
         <activity android:name=".userProfile" />
         <activity android:name=".FamilyMembers" />

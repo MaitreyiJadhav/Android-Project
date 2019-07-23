@@ -1,9 +1,11 @@
 package ravinder.example.myklan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +19,8 @@ import android.view.Menu;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    String authenticator="";
+    String userid="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,14 @@ public class Dashboard extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        SharedPreferences mPrefs = getSharedPreferences("authentication",0);
+      authenticator = mPrefs.getString("authenticator", "");
+      userid = mPrefs.getString("userId", "");
+        Log.e("checkingAuthen",authenticator);
+        Log.e("CheckingUser",userid);
+
+
     }
 //    public void userProfile(View view) {
 //
@@ -103,5 +115,11 @@ public class Dashboard extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void sharedSpace(View v)
+    {
+        Intent SharedSpacePage=new Intent(getApplicationContext(), SharedSpace.class);
+        startActivity(SharedSpacePage);
     }
 }
