@@ -28,7 +28,7 @@ String info="Nothing to show";
         //int position=Integer.parseInt(message);
         accountName=(TextView)findViewById(R.id.name);
         accountUsername=(TextView)findViewById(R.id.username);
-        accountPassword=(TextView)findViewById(R.id.password);
+        accountPassword=(TextView)findViewById(R.id.number);
         accountInfo=(TextView)findViewById(R.id.info);
 
         Log.e("Position", "" + message);
