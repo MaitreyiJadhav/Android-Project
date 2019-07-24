@@ -122,4 +122,9 @@ public class Dashboard extends AppCompatActivity
         Intent SharedSpacePage=new Intent(getApplicationContext(), SharedSpace.class);
         startActivity(SharedSpacePage);
     }
+    public void taskNotifications(View v)
+    {
+        Intent taskNotificationsPage=new Intent(getApplicationContext(), TaskNotifications.class);
+        startActivity(taskNotificationsPage);
+    }
 }
