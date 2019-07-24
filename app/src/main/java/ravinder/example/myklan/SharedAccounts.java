@@ -44,7 +44,7 @@ String userid="";
         authenticator = mPrefs.getString("authenticator", "");
         userid = mPrefs.getString("userId", "");
 
-
+        GetAccounts(userid);
         SharedPreferences account = getSharedPreferences("accounts",0);
         String accounts = account.getString("accounts", "");
         Log.e(tag,"Accountname: " + accounts);
@@ -72,7 +72,7 @@ String userid="";
         adapter=new AccountsAdapterClass(this,itemsList);
         recylerview.setAdapter(adapter);
 
-        GetAccounts(userid);
+
     }
 
 

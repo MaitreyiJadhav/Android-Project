@@ -2,6 +2,7 @@ package ravinder.example.myklan;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -61,6 +63,39 @@ public class ContactsAdapterClass extends Adapter<ContactsAdapterClass.ProductVi
             super(itemView);
             name=itemView.findViewById(R.id.t1);
             number=itemView.findViewById(R.id.t2);
+
+
+
+
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    // get position
+                    int pos = getAdapterPosition();
+                    String position = Integer.toString(pos);
+
+                    Intent fp=new Intent(mCtx.getApplicationContext(), ContactDetails.class);
+                    //            intent.putExtra("quantity",Integer.parseInt(quantity.getText().toString()));
+                    fp.putExtra("quantity",position);
+                    mCtx.startActivity(fp);
+
+                    //Log.e("position", position);
+
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Contacts clickedDataItem = itemsList.get(pos);
+                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getName(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+
+                }
+
+
+            });
+
+
 
         }
     }

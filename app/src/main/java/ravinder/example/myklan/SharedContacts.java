@@ -45,7 +45,7 @@ public class SharedContacts extends AppCompatActivity {
         recylerview=(RecyclerView) findViewById(R.id.recycler_view);
         recylerview.setHasFixedSize(true);
         recylerview.setLayoutManager(new LinearLayoutManager(this));
-
+        GetContacts(userid);
         SharedPreferences contact = getSharedPreferences("Contacts",0);
         String contacts = contact.getString("contacts", "");
         Log.e(tag,"Accountname: " + contacts);
@@ -73,7 +73,7 @@ public class SharedContacts extends AppCompatActivity {
 
         adapter=new ContactsAdapterClass(this,itemsList);
         recylerview.setAdapter(adapter);
-        GetContacts(userid);
+
     }
 
     public void GetContacts(final String uid)

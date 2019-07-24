@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SharedContacts"></activity>
+        <activity android:name=".ContactDetails"></activity>
+        <activity android:name=".SharedContacts" />
         <activity android:name=".AccountDetails" />
         <activity android:name=".SharedAccounts" />
         <activity android:name=".SharedSpace" />
