@@ -79,7 +79,7 @@ public class MembersEmpty extends AppCompatActivity {
 
                     Log.e("url",url);
 
-                  
+
                     URL loginEndPoint = new URL(url);
                     connection = (HttpsURLConnection) loginEndPoint.openConnection();
                     connection.setRequestMethod("GET");

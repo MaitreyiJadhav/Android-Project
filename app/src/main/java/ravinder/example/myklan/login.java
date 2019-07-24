@@ -2,6 +2,7 @@ package ravinder.example.myklan;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -34,7 +35,7 @@ public class login extends Activity {
 
     String authenticator = "";
     String str="";
-
+String uid="";
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -110,6 +111,11 @@ public class login extends Activity {
                                 try {
                                     authenticator = resp.getString("token");
                                     GetFamilyData();
+
+
+
+
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -171,13 +177,24 @@ public class login extends Activity {
                     JSONObject resp = new JSONObject(response.toString());
                     String familyName = resp.get("familyName").toString();
 
-                    String uid = resp.get("_id").toString();
+                     uid = resp.get("_id").toString();
 
                     Log.e(tag,"the family Name: " + familyName);
                     Log.e(tag,"user ID: " + uid);
 
                     //Log.e(tag,"the actual result: " + resp);
                     //if(resp.getBoolean("auth")){
+
+
+
+                    SharedPreferences mPrefs = getSharedPreferences("authentication", 0);
+                    //Give any name for //preference as I have given "IDvalue" and value 0.
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString("authenticator", authenticator);
+                    editor.putString("userId", uid);
+                    // give key value as "sound" you mentioned and value what you // to want give as "1" in you mentioned
+                    editor.commit();
+
 
 
                     Intent fp=new Intent(getApplicationContext(), MembersEmpty.class);
