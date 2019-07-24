@@ -18,7 +18,7 @@ public class AccountDetails extends AppCompatActivity {
     private TextView accountUsername;
     private TextView accountPassword;
     private TextView accountInfo;
-String info="";
+String info="Nothing to show";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +45,9 @@ String info="";
                     String name = jsonobject.getString("name");
                     String password = jsonobject.getString("password");
                     String username = jsonobject.getString("username");
-
-                    //info = jsonobject.getString("info");
+                       if(jsonobject.has("info")) {
+                           info = jsonobject.getString("info");
+                       }
                     Log.e("name", name);
                     accountName.setText(name);
                     accountUsername.setText(username);

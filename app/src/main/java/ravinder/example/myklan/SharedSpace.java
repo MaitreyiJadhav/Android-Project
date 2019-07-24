@@ -18,4 +18,10 @@ public class SharedSpace extends AppCompatActivity {
         Intent SharedAccountsPage=new Intent(getApplicationContext(), SharedAccounts.class);
         startActivity(SharedAccountsPage);
     }
+
+    public void sharedContacts(View v)
+    {
+        Intent SharedContactsPage=new Intent(getApplicationContext(), SharedContacts.class);
+        startActivity(SharedContactsPage);
+    }
 }

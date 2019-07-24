@@ -66,6 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_height_whoAreYou"
         android:layout_marginBottom="@dimen/car_margin_bottom"
+        android:onClick="sharedContacts"
         app:cardBackgroundColor="#E2DDD8D8"
         app:cardCornerRadius="13dp"
         app:cardElevation="8dp">
