@@ -81,7 +81,7 @@ public class TaskNotifications extends AppCompatActivity {
             public void run() {
                 HttpsURLConnection connection = null;
                 try {
-                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/taskNotifications/getTasks?userId=" + userid;
+                    String url = "https://w4dtt62bhd.execute-api.us-east-1.amazonaws.com/dev/taskNotifications/getTasks?userId=" + userid;
 
                     Log.e("url", url);
 

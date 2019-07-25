@@ -73,7 +73,7 @@ public class MembersEmpty extends AppCompatActivity {
                 HttpsURLConnection connection = null;
                 try {
                     //{"key":"Authorization","value":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbXlrbGFuLmNvbSIsImlhdCI6MTU2MjcxMjc4MCwiZXhwIjoxNTYyNzk5MTgwfQ.IU9uNrzoiFYgkwp7b4MCWkHPIoCdGP0PIgnGBktmZ5I","description":"","type":"text","enabled":true}
-                    String url = "https://1i16orvav2.execute-api.us-east-1.amazonaws.com/dev/getMembers?userId="+uid;
+                    String url = "https://w4dtt62bhd.execute-api.us-east-1.amazonaws.com/dev/getMembers?userId="+uid;
 
 
 
